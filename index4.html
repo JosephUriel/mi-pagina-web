@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agencia de Viajes Cusco</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #fff;
+      color: #333;
+    }
+    header {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+    }
+    .carousel {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 2s ease-in-out, transform 6s ease;
+    }
+    .carousel img.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    header .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      animation: fadeInUp 2s ease-out;
+    }
+    header .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: pulse 3s infinite;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #d39f25, #8c6312);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8);
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #c44536;
+      animation: fadeInUp 1.5s ease-out;
+    }
+    .tours {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .tour-card {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: zoomIn 1s ease forwards;
+    }
+    .tour-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+    .tour-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .tour-card:hover img {
+      transform: scale(1.1);
+    }
+    .tour-info {
+      padding: 20px;
+      text-align: center;
+    }
+    .tour-info h3 {
+      margin-bottom: 10px;
+      color: #444;
+    }
+    footer {
+      background: #c67b11;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+
+    #about {
+      padding: 80px 20px;
+      background: #f9f9f9;
+      border-radius: 15px;
+
+      border: 30px solid transparent;
+      border-image-source: url('andino4.png');
+      border-image-slice: 500;
+      border-image-repeat: round;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .about-text h2 {
+      font-size: 2.5rem;
+      color: #c44536;
+      margin-bottom: 20px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .about-carousel {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .about-slides img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .about-slides img.active {
+      opacity: 1;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes zoomIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="carousel">
+      <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1176" class="active" alt="Machu Picchu">
+      <img src="https://images.unsplash.com/photo-1545330785-15356daae141?q=80&w=1290" alt="Montaña de 7 Colores">
+      <img src="https://images.unsplash.com/photo-1749062149286-01111a8108f9?q=80&w=1860" alt="Valle Sagrado">
+      <img src="https://images.unsplash.com/photo-1741310298999-7e7c89fda2bc?q=80&w=1170" alt="Plaza de Armas Cusco">
+      <img src="https://images.unsplash.com/photo-1725153265879-9b0949e808d3?q=80&w=1170" alt="Ollantaytambo">
+      <img src="https://images.unsplash.com/photo-1684466690929-f223f71246e1?q=80&w=1074" alt="Qorikancha">
+    </div>
+    <div class="hero-text">
+      <h1>Descubre Cusco con Nosotros</h1>
+      <a href="#tours" class="btn">Reserva tu Aventura</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Acerca de Nosotros</h2>
+        <p>
+          Somos <b>Agencia de Viajes Cusco</b>, una empresa apasionada por mostrar la magia de nuestra tierra.  
+          Nos especializamos en experiencias únicas, tours personalizados y aventuras inolvidables en Cusco y alrededores.  
+          Nuestro compromiso es que disfrutes cada momento con la seguridad y confianza que mereces.
+        </p>
+        <p>
+          ✨ Más de <b>10 años de experiencia</b> compartiendo cultura, tradición y naturaleza con viajeros de todo el mundo.
+        </p>
+        <a href="#tours" class="btn">Explora Nuestros Tours</a>
+      </div>
+
+      <div class="about-carousel">
+        <div class="about-slides">
+          <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1176" class="active" alt="Tour Machu Picchu">
+          <img src="https://images.unsplash.com/photo-1545330785-15356daae141?q=80&w=1290" alt="Tour Montaña de 7 Colores">
+          <img src="https://images.unsplash.com/photo-1741310298999-7e7c89fda2bc?q=80&w=1170" alt="Tour Plaza de Armas">
+          <img src="https://images.unsplash.com/photo-1725153265879-9b0949e808d3?q=80&w=1170" alt="Tour Ollantaytambo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tours">
+    <h2>Tours Populares</h2>
+    <div class="tours">
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1176" alt="Machu Picchu">
+        <div class="tour-info">
+          <h3>Machu Picchu</h3>
+          <p>Explora una de las 7 maravillas del mundo.</p>
+          <button class="btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1545330785-15356daae141?q=80&w=1290" alt="Montaña de 7 Colores">
+        <div class="tour-info">
+          <h3>Montaña de 7 Colores</h3>
+          <p>Una caminata inolvidable en los Andes.</p>
+          <button class="btn whatsapp-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1749062149286-01111a8108f9?q=80&w=1860" alt="Valle Sagrado">
+        <div class="tour-info">
+          <h3>Valle Sagrado</h3>
+          <p>Conoce la magia y cultura ancestral.</p>
+          <button class="btn whatsapp-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1741310298999-7e7c89fda2bc?q=80&w=1170" alt="Plaza de Armas Cusco">
+        <div class="tour-info">
+          <h3>Plaza de Armas</h3>
+          <p>Descubre el corazón histórico de Cusco.</p>
+          <button class="btn whatsapp-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1725153265879-9b0949e808d3?q=80&w=1170" alt="Ollantaytambo">
+        <div class="tour-info">
+          <h3>Ollantaytambo</h3>
+          <p>Impresionantes ruinas y encanto colonial.</p>
+          <button class="btn whatsapp-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1684466690929-f223f71246e1?q=80&w=1074" alt="Qorikancha">
+        <div class="tour-info">
+          <h3>Qorikancha</h3>
+          <p>El templo más sagrado de los Incas.</p>
+          <button class="btn whatsapp-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Agencia de Viajes Cusco</p>
+    <p>WhatsApp: +51 973 040 666 | Email: contacto@viajescusco.com</p>
+  </footer>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll(".carousel img");
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 5000);
+
+    let aboutCurrent = 0;
+    const aboutSlides = document.querySelectorAll(".about-slides img");
+    setInterval(() => {
+      aboutSlides[aboutCurrent].classList.remove("active");
+      aboutCurrent = (aboutCurrent + 1) % aboutSlides.length;
+      aboutSlides[aboutCurrent].classList.add("active");
+    }, 4000);
+
+    const whatsappNumber = "51973040666";
+    const whatsappButtons = document.querySelectorAll(".whatsapp-btn");
+    whatsappButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const tourName = button.closest(".tour-info")?.querySelector("h3")?.textContent || "un tour";
+        const message = `Hola, quiero más información sobre el tour ${tourName}`;
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank");
+      });
+    });
+  </script>
+</body>
+</html>
