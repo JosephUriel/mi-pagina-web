@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuevo Comienzo 2026 ✨</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #0b1f2a, #000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        overflow: hidden;
+    }
+
+    canvas {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    .card {
+        width: 420px;
+        max-width: 90%;
+        text-align: center;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(14px);
+        padding: 40px 35px;
+        border-radius: 22px;
+        box-shadow: 0 0 40px rgba(255,215,0,0.35);
+        animation: appear 2s ease;
+    }
+
+    h1 {
+        font-size: 2.2em;
+        color: #ffd369;
+        margin-bottom: 18px;
+        text-shadow: 0 0 20px #ffd369;
+        animation: glow 2s infinite alternate;
+    }
+
+    .quote {
+        font-size: 1.05em;
+        line-height: 1.6;
+        min-height: 90px;
+        opacity: 0;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
+    .author {
+        margin-top: 14px;
+        font-size: 0.9em;
+        opacity: 0.7;
+    }
+
+    .footer {
+        margin-top: 25px;
+        font-size: 0.85em;
+        letter-spacing: 2px;
+        opacity: 0.6;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ffd369; }
+        to { text-shadow: 0 0 30px #ffd369; }
+    }
+
+    @keyframes appear {
+        from { opacity: 0; transform: scale(0.92); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<canvas id="fx"></canvas>
+
+<div class="card">
+    <h1>✨ Nuevo Comienzo 2026 ✨</h1>
+
+    <div class="quote" id="quote"></div>
+    <div class="author" id="author"></div>
+
+    <div class="footer">
+        2026 · Avanza con fe y propósito
+    </div>
+</div>
+
+<script>
+/* 📜 CITAS SUD (ROTATIVAS) */
+const quotes = [
+    {
+        text: "Cuando elegimos arrepentirnos, elegimos cambiar. Permitimos que el Salvador transforme nuestra vida.",
+        author: "Presidente Russell M. Nelson"
+    },
+    {
+        text: "El Señor no espera que seamos perfectos ahora, pero sí que sigamos avanzando.",
+        author: "Élder Jeffrey R. Holland"
+    },
+    {
+        text: "Las decisiones correctas, tomadas de manera constante, conducen a destinos eternos.",
+        author: "Presidente Thomas S. Monson"
+    },
+    {
+        text: "No es demasiado tarde para empezar a hacer lo correcto.",
+        author: "Élder Dieter F. Uchtdorf"
+    },
+    {
+        text: "La fe en Jesucristo nos impulsa a actuar, no solo a creer.",
+        author: "Élder David A. Bednar"
+    },
+    {
+        text: "El esfuerzo diario y fiel produce milagros silenciosos.",
+        author: "Presidente Gordon B. Hinckley"
+    }
+];
+
+let index = 0;
+const quoteEl = document.getElementById("quote");
+const authorEl = document.getElementById("author");
+
+function changeQuote() {
+    quoteEl.style.opacity = 0;
+
+    setTimeout(() => {
+        quoteEl.textContent = `"${quotes[index].text}"`;
+        authorEl.textContent = `— ${quotes[index].author}`;
+        quoteEl.style.opacity = 1;
+        index = (index + 1) % quotes.length;
+    }, 600);
+}
+
+changeQuote();
+setInterval(changeQuote, 7000);
+
+/* ✨ PARTÍCULAS DE LUZ */
+const canvas = document.getElementById("fx");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let lights = [];
+
+function createLight() {
+    lights.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        r: Math.random() * 2 + 1,
+        speed: Math.random() * 0.6 + 0.3,
+        alpha: Math.random() * 0.5 + 0.3
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    lights.forEach((l, i) => {
+        l.y -= l.speed;
+        ctx.beginPath();
+        ctx.arc(l.x, l.y, l.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,215,150,${l.alpha})`;
+        ctx.fill();
+
+        if (l.y < -10) lights.splice(i, 1);
+    });
+
+    requestAnimationFrame(animate);
+}
+
+setInterval(createLight, 300);
+animate();
+</script>
+
+</body>
+</html>
